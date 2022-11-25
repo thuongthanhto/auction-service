@@ -2,7 +2,6 @@ service: auction-service
 
 plugins:
   - serverless-bundle
-  - serverless-pseudo-parameters
 
 provider:
   name: aws
@@ -22,6 +21,20 @@ functions:
       - http:
           method: POST
           path: /auction
+
+  getAuctions:
+    handler: src/handlers/getAuctions.handler
+    events:
+      - http:
+          method: GET
+          path: /auctions
+
+  getAuction:
+    handler: src/handlers/getAuction.handler
+    events:
+      - http:
+          method: GET
+          path: /auction/{id}
 
 resources:
   Resources:
